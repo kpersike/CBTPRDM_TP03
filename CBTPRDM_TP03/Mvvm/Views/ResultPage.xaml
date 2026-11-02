@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Nome: Kaik Persike Maiorquino
+Prontuário: CB3029689
+
+Nome: Luiz Gustavo Verissimo Monteiro
+Prontuário: CB3030326
+-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CBTPRDM_TP03.Mvvm.Views.ResultPage"
+             Title="Resultado do Rastreamento">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Frame BackgroundColor="#F3E5F5" BorderColor="Purple" CornerRadius="10" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Status Atual do Pacote" FontSize="18" FontAttributes="Bold" TextColor="Purple" />
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Código:" FontAttributes="Bold" />
+                        <Label Text="{Binding Package.TrackingCode}" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Situação:" FontAttributes="Bold" />
+                        <Label Text="{Binding Package.Status}" TextColor="Green" FontAttributes="Bold" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Localização Atual:" FontAttributes="Bold" />
+                        <Label Text="{Binding Package.CurrentLocation}" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Previsão de Entrega:" FontAttributes="Bold" />
+                        <Label Text="{Binding Package.EstimatedDeliveryDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="Histórico de Eventos" FontSize="16" FontAttributes="Bold" Margin="0,10,0,0" />
+
+            <!-- Lista de histórico de eventos -->
+            <CollectionView ItemsSource="{Binding Package.History}" HeightRequest="300">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Padding="10" Margin="0,5" CornerRadius="5">
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding Description}" FontAttributes="Bold" FontSize="14" />
+                                <Label Text="{Binding Location}" FontSize="12" TextColor="Gray" />
+                                <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontSize="10" TextColor="DarkGray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
